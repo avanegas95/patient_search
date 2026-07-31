@@ -3,6 +3,20 @@
   --text-muted: #5c6470;
   --accent: #1d4ed8;
   --surface: #f7f8fa;
+
+  --page-width: 1100px;
+  --cell-padding-x: 12px;
+
+  /* The filter panel and the results table share these column widths so each
+     filter sits above the column it applies to. */
+  --col-patient-id: 15%;
+  --col-first-name: 16%;
+  --col-last-name: 16%;
+  --col-state: 9%;
+  --col-diagnosis: 20%;
+  --col-genes: 24%;
+  --table-columns: var(--col-patient-id) var(--col-first-name) var(--col-last-name)
+    var(--col-state) var(--col-diagnosis) var(--col-genes);
 }
 
 * {
@@ -19,6 +33,11 @@ body {
 
 .app-header {
   border-bottom: 1px solid var(--border);
+}
+
+.app-header-inner {
+  max-width: var(--page-width);
+  margin: 0 auto;
   padding: 0 24px;
 }
 
@@ -34,18 +53,19 @@ body {
 }
 
 .app-main {
+  max-width: var(--page-width);
+  margin: 0 auto;
   padding: 24px;
-  max-width: 1100px;
 }
 
 /* Filters */
 
 .filter-panel {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 16px;
-  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  align-items: end;
+  gap: 14px 0;
+  padding: 14px 4px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -55,6 +75,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
+  padding: 0 var(--cell-padding-x);
 }
 
 .filter-field label {
@@ -67,13 +89,14 @@ body {
 
 .filter-field input,
 .filter-field select {
+  width: 100%;
+  min-width: 0;
   padding: 7px 9px;
   font-size: 14px;
   font-family: inherit;
   border: 1px solid var(--border);
   border-radius: 4px;
   background: #ffffff;
-  min-width: 160px;
 }
 
 .filter-field input:focus,
@@ -82,8 +105,11 @@ body {
   outline-offset: -1px;
 }
 
-.filter-panel button {
-  padding: 8px 14px;
+.filter-clear {
+  align-self: end;
+  white-space: nowrap;
+  margin: 0 var(--cell-padding-x);
+  padding: 8px 10px;
   font-size: 14px;
   font-family: inherit;
   border: 1px solid var(--border);
@@ -92,7 +118,7 @@ body {
   cursor: pointer;
 }
 
-.filter-panel button:disabled {
+.filter-clear:disabled {
   color: #a0a6b0;
   cursor: default;
 }
@@ -103,6 +129,7 @@ body {
   color: var(--text-muted);
   font-size: 14px;
   margin: 20px 0 10px;
+  padding: 0 var(--cell-padding-x);
 }
 
 .patient-table {
@@ -113,8 +140,9 @@ body {
 .patient-table th,
 .patient-table td {
   text-align: left;
-  padding: 9px 12px;
+  padding: 9px var(--cell-padding-x);
   border-bottom: 1px solid var(--border);
+  overflow-wrap: break-word;
 }
 
 .patient-table th {
@@ -157,6 +185,11 @@ body {
 
 /* Detail page */
 
+.detail-page {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
 .back-link {
   display: inline-block;
   margin-bottom: 20px;
@@ -173,7 +206,6 @@ body {
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 20px 24px;
-  max-width: 620px;
 }
 
 .patient-detail h2 {
@@ -200,4 +232,49 @@ body {
 
 .detail-value {
   flex: 1;
+}
+
+/* Wide enough for one filter per column: pin each filter above the column it
+   applies to, and give the table matching fixed column widths. Below this the
+   columns are too narrow to line up, so the filters just wrap. */
+@media (min-width: 1000px) {
+  .filter-panel {
+    grid-template-columns: var(--table-columns);
+    gap: 12px 0;
+    padding: 14px 0;
+  }
+
+  /* Patient ID has no filter, so the clear button takes that column. */
+  .filter-clear {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .patient-table {
+    table-layout: fixed;
+  }
+
+  .patient-table th:nth-child(1) {
+    width: var(--col-patient-id);
+  }
+
+  .patient-table th:nth-child(2) {
+    width: var(--col-first-name);
+  }
+
+  .patient-table th:nth-child(3) {
+    width: var(--col-last-name);
+  }
+
+  .patient-table th:nth-child(4) {
+    width: var(--col-state);
+  }
+
+  .patient-table th:nth-child(5) {
+    width: var(--col-diagnosis);
+  }
+
+  .patient-table th:nth-child(6) {
+    width: var(--col-genes);
+  }
 }

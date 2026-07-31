@@ -52,7 +52,7 @@ export function PatientDetailPage() {
   }, [patientId])
 
   return (
-    <div>
+    <div className="detail-page">
       <Link to="/" className="back-link">
         Back to all patients
       </Link>

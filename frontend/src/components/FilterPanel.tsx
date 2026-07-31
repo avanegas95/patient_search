@@ -90,7 +90,12 @@ export function FilterPanel({ filters, options, onChange, onClear }: FilterPanel
         </select>
       </div>
 
-      <button type="button" onClick={onClear} disabled={!hasActiveFilter}>
+      <button
+        type="button"
+        className="filter-clear"
+        onClick={onClear}
+        disabled={!hasActiveFilter}
+      >
         Clear filters
       </button>
     </section>

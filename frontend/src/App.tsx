@@ -7,9 +7,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <header className="app-header">
-        <Link to="/">
-          <h1>Patient Search</h1>
-        </Link>
+        <div className="app-header-inner">
+          <Link to="/">
+            <h1>Patient Search</h1>
+          </Link>
+        </div>
       </header>
 
       <main className="app-main">
