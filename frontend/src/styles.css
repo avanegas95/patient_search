@@ -1,0 +1,203 @@
+:root {
+  --border: #d5d9e0;
+  --text-muted: #5c6470;
+  --accent: #1d4ed8;
+  --surface: #f7f8fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  color: #1a1d21;
+  background: #ffffff;
+}
+
+.app-header {
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.app-header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-header h1 {
+  font-size: 20px;
+  margin: 0;
+  padding: 18px 0;
+}
+
+.app-main {
+  padding: 24px;
+  max-width: 1100px;
+}
+
+/* Filters */
+
+.filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.filter-field input,
+.filter-field select {
+  padding: 7px 9px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #ffffff;
+  min-width: 160px;
+}
+
+.filter-field input:focus,
+.filter-field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.filter-panel button {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.filter-panel button:disabled {
+  color: #a0a6b0;
+  cursor: default;
+}
+
+/* Results */
+
+.result-count {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 20px 0 10px;
+}
+
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.patient-table th,
+.patient-table td {
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.patient-table th {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  border-bottom-width: 2px;
+}
+
+.patient-table tbody tr:hover {
+  background: var(--surface);
+}
+
+.patient-table a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.patient-table a:hover {
+  text-decoration: underline;
+}
+
+.empty-state {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--surface);
+  border-radius: 6px;
+}
+
+.error {
+  padding: 12px 14px;
+  margin-top: 16px;
+  color: #8a1c1c;
+  background: #fdeaea;
+  border: 1px solid #f2c2c2;
+  border-radius: 4px;
+}
+
+/* Detail page */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.patient-detail {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 24px;
+  max-width: 620px;
+}
+
+.patient-detail h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+
+.detail-row {
+  display: flex;
+  gap: 16px;
+  padding: 9px 0;
+  border-top: 1px solid var(--border);
+}
+
+.detail-label {
+  flex: 0 0 130px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding-top: 2px;
+}
+
+.detail-value {
+  flex: 1;
+}

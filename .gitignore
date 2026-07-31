@@ -1,0 +1,14 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Generated database
+backend/patients.db
+
+# Node
+node_modules/
+frontend/dist/
+
+# macOS
+.DS_Store
